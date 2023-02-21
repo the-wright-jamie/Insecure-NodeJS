@@ -19,7 +19,7 @@ http.createServer(app).listen(process.env.HOST_PORT, () => {
 app.route(`/getInsecure/user/:username`).get(async (req, res) => {
   const response = await users.readItInsecure(req.params.username);
   if (!response) {
-    res.status(404).send("User not found\n[RU-1]");
+    res.status(404).send("User not found");
   } else {
     res.send(response);
   }
@@ -28,7 +28,7 @@ app.route(`/getInsecure/user/:username`).get(async (req, res) => {
 app.route(`/getSecure/user/:username`).get(async (req, res) => {
   const response = await users.readItSecure(req.params.username);
   if (!response) {
-    res.status(404).send("User not found\n[RU-1]");
+    res.status(404).send("User not found");
   } else {
     res.send(response);
   }
