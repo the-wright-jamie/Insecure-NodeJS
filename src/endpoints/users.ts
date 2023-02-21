@@ -5,6 +5,9 @@ export class Users {
     const pool = new Pool();
 
     try {
+      // this is insecure because the data is just placed
+      // directly in with no way for the SQL interpreter
+      // to tell if it's data or instructions
       var result = await pool.query(
         `SELECT * FROM insecurenode.users WHERE username = '${username}'`
       );
@@ -25,6 +28,10 @@ export class Users {
     const pool = new Pool();
 
     try {
+      // here a prepared statement is used, so the SQL
+      // interpreter knows that whatever is passed in is
+      // to be treated as data, preventing most injection
+      // attacks
       var result = await pool.query(
         `SELECT * FROM insecurenode.users WHERE username = $1`,
         [username]
