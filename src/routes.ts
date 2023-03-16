@@ -25,6 +25,12 @@ app.route(`/getInsecure/user/:username`).get(async (req, res) => {
   }
 });
 
+app.route(`/showOff/stringParsing/:string`).get(async (req, res) => {
+  res.send(
+    `SELECT * FROM insecurenode.users WHERE username = '${req.params.string}'`
+  );
+});
+
 app.route(`/getSecure/user/:username`).get(async (req, res) => {
   const response = await users.readItSecure(req.params.username);
   if (!response) {
